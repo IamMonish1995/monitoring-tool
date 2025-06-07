@@ -11,9 +11,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 const WEBSITES_FILE = path.join(__dirname, "websites.json");
-
 // Homepage to list/add/remove websites
 app.get("/", (req, res) => {
+  res.send(`working`)
+});
+
+// Homepage to list/add/remove websites
+app.get("/admin", (req, res) => {
   const websites = JSON.parse(fs.readFileSync(WEBSITES_FILE));
   res.render("index", { websites });
 });
