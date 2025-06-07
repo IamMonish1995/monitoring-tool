@@ -1,5 +1,6 @@
 const express = require("express");
 const fs = require("fs");
+const path = require("path");
 const bodyParser = require("body-parser");
 const { checkWebsites } = require("./monitor");
 const cron = require("node-cron");
@@ -9,7 +10,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const WEBSITES_FILE = "websites.json";
+const WEBSITES_FILE = path.join(__dirname, "websites.json");
 
 // Homepage to list/add/remove websites
 app.get("/", (req, res) => {
