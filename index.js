@@ -6,9 +6,10 @@ const { checkWebsites } = require("./monitor");
 const cron = require("node-cron");
 
 const app = express();
+app.set("views", path.join(__dirname, "views")); // 👈 This fixes the error
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 const WEBSITES_FILE = path.join(__dirname, "websites.json");
 // Homepage to list/add/remove websites
